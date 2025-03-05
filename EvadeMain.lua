@@ -1,7 +1,6 @@
 local WorkspacePlayers = game:GetService("Workspace").Game.Players;
 local Players = game:GetService('Players');
 local localplayer = Players.LocalPlayer;
--- semicolon but cool :sunglasses:
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/MainLib.lua"))()
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/EspLib.lua"))()
