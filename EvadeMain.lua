@@ -4,11 +4,11 @@ local localplayer = Players.LocalPlayer;
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/MainLib.lua"))()
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/EspLib.lua"))()
-Esp.Enabled = true
-Esp.Boxes = true
-Esp.Tracers = true
-Esp.Players = true
-Esp.Distance = true
+Esp.Enabled = false
+Esp.Boxes = false
+Esp.Tracers = false
+Esp.Players = false
+Esp.Distance = false
 
 Esp.Settings.BoxColor = Color3.fromRGB(0, 255, 0)
 Esp.Settings.TracerColor = Color3.fromRGB(255, 0, 0)
