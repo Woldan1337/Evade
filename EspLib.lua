@@ -261,7 +261,7 @@ function boxBase:Update()
         if Vis6 then
                 self.Components.Tracer.Visible = true
                 self.Components.Tracer.From = Vector2.new(TorsoPos.X, TorsoPos.Y)
-                --self.Components.Tracer.To = Vector2.new(mouse.X, mouse.Y+gs.Y)
+                self.Components.Tracer.To = Vector2.new(mouse.X, mouse.Y)
                 self.Components.Tracer.Color = color
                 self.Components.Tracer.To = Vector2.new(cam.ViewportSize.X/2,cam.ViewportSize.Y/ESP.AttachShift)
         else
