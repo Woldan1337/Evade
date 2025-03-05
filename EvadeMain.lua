@@ -60,7 +60,6 @@ local JumpPower = EvadeSector:AddSlider("JumpPower", 3, 3, 20, 1, function(Value
     Settings.Jump = Value
 end)
 
---// because silder does not detect dotted values 
 
 World:AddButton('Full Bright', function()
    	Game.Lighting.Brightness = 4
@@ -138,15 +137,15 @@ Visuals:AddColorpicker("Downed Player Color", Color3.fromRGB(255,255,255), funct
     Settings.DownedColor = Color
 end)
 
-Credits:AddLabel("Developed By xCLY And batusd")
-Credits:AddLabel("UI Lib: Jans Lib")
-Credits:AddLabel("ESP Lib: Kiriot")
+Credits:AddLabel("Developed By Woldan")
+Credits:AddLabel("-------------------")
+Credits:AddLabel("discord.gg/baristv44")
 Configs:CreateConfigSystem()
 
 local TypeLabelC5 = FarmStats:AddLabel('Auto Farm Stats')
 local DurationLabelC5 = FarmStats:AddLabel('Duration: 0')
 local EarnedLabelC5 = FarmStats:AddLabel('Earned: 0')
---local TicketsLabelC5 = FarmStats:AddLabel('Total Tickets:'..localplayer:GetAttribute('Tickets'))
+local TicketsLabelC5 = FarmStats:AddLabel('Total Tickets:'..localplayer:GetAttribute('Tickets'))
 
 local FindAI = function()
     for _,v in pairs(WorkspacePlayers:GetChildren()) do
@@ -165,7 +164,6 @@ local GetDownedPlr = function()
     end
 end
 
---Shitty Auto farm 🥶💀🤡💀🤡💀🤡
 local revive = function()
     local downedplr = GetDownedPlr()
     if downedplr ~= nil and downedplr:FindFirstChild('HumanoidRootPart') then
@@ -187,7 +185,6 @@ local revive = function()
     end
 end
 
---Kiriot
 Esp:AddObjectListener(WorkspacePlayers, {
     Color =  Color3.fromRGB(255,0,0),
     Type = "Model",
@@ -208,13 +205,12 @@ Esp:AddObjectListener(WorkspacePlayers, {
     IsEnabled = "NPCs",
 })
 
---[[Esp:AddObjectListener(game:GetService("Workspace").Game.Effects.Tickets, {
+Esp:AddObjectListener(game:GetService("Workspace").Game.Effects.Tickets, {
     CustomName = "Ticket",
     Color = Color3.fromRGB(41,180,255),
     IsEnabled = "TicketEsp"
-})]]
+})
 
---Tysm CJStylesOrg
 Esp.Overrides.GetColor = function(char)
    local GetPlrFromChar = Esp:GetPlrFromChar(char)
    if GetPlrFromChar then
@@ -235,12 +231,12 @@ old = hookmetamethod(game,"__namecall",newcclosure(function(self,...)
     return old(self,...)
 end))
 
-local formatNumber = (function(value) -- //Credits: https://devforum.roblox.com/t/formatting-a-currency-label-to-include-commas/413670/3
+local formatNumber = (function(value)
 	value = tostring(value)
 	return value:reverse():gsub("%d%d%d", "%1,"):reverse():gsub("^,", "")
 end)
 
-function Format(Int) -- // Credits: https://devforum.roblox.com/t/converting-secs-to-hsec/146352
+function Format(Int)
 	return string.format("%02i", Int)
 end
 
@@ -254,21 +250,21 @@ end
 
 task.spawn(function()
     while task.wait(1) do
-        --if Settings.TicketFarm then
-        --    Settings.stats.TicketFarm.duration += 1
-        --end
+        if Settings.TicketFarm then
+            Settings.stats.TicketFarm.duration += 1
+        end
         if Settings.moneyfarm then
             Settings.stats.TokenFarm.duration += 1
         end 
     end
 end)
 
---local gettickets = localplayer:GetAttribute('Tickets')
+local gettickets = localplayer:GetAttribute('Tickets')
 local GetTokens = localplayer:GetAttribute('Tokens')
 
 localplayer:GetAttributeChangedSignal('Tickets'):Connect(function()
-    --local tickets = tostring(gettickets - localplayer:GetAttribute('Tickets'))
-    --local cleanvalue = string.split(tickets, "-")
+    local tickets = tostring(gettickets - localplayer:GetAttribute('Tickets'))
+    local cleanvalue = string.split(tickets, "-")
     Settings.stats.TicketFarm.earned = cleanvalue[2]
 end)
 
@@ -292,7 +288,7 @@ task.spawn(function()
             TypeLabelC5:Set('Ticket Farm')
             DurationLabelC5:Set('Duration:'..convertToHMS(Settings.stats.TicketFarm.duration))
             EarnedLabelC5:Set('Earned:'.. formatNumber(Settings.stats.TicketFarm.earned))
-            --TicketsLabelC5:Set('Total Tickets: '..localplayer:GetAttribute('Tickets'))
+            TicketsLabelC5:Set('Total Tickets: '..localplayer:GetAttribute('Tickets'))
 
             if game.Players.LocalPlayer:GetAttribute('InMenu') ~= true and localplayer:GetAttribute('Dead') ~= true then
                 for i,v in pairs(game:GetService("Workspace").Game.Effects.Tickets:GetChildren()) do
@@ -326,7 +322,7 @@ task.spawn(function()
             TypeLabelC5:Set('Money Farm')
             DurationLabelC5:Set('Duration:'..convertToHMS(Settings.stats.TokenFarm.duration))
             EarnedLabelC5:Set('Earned:'.. formatNumber(Settings.stats.TokenFarm.earned))
-            --TicketsLabelC5:Set('Total Tokens: '..formatNumber(localplayer:GetAttribute('Tokens')))
+            TicketsLabelC5:Set('Total Tokens: '..formatNumber(localplayer:GetAttribute('Tokens')))
             
             if localplayer:GetAttribute("InMenu") and localplayer:GetAttribute("Dead") ~= true then
                 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
@@ -346,7 +342,6 @@ task.spawn(function()
     end
 end)
 
---Infinite yield's Anti afk
 local GC = getconnections or get_signal_cons
 	if GC then
 		for i,v in pairs(GC(localplayer.Idled)) do
