@@ -4,9 +4,16 @@ local localplayer = Players.LocalPlayer;
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/MainLib.lua"))()
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/EspLib.lua"))()
-Esp.Enabled = false
-Esp.Tracers = false
-Esp.Boxes = false
+Esp.Enabled = true
+Esp.Boxes = true
+Esp.Tracers = true
+Esp.Players = true
+Esp.Distance = true
+
+Esp.Settings.BoxColor = Color3.fromRGB(0, 255, 0)
+Esp.Settings.TracerColor = Color3.fromRGB(255, 0, 0)
+Esp.Settings.PlayerTextColor = Color3.fromRGB(255, 255, 0)
+Esp.Settings.DistanceTextColor = Color3.fromRGB(255, 255, 255)
 
 local Window = Library:CreateWindow("🧟🎃 Woldan - Evade", Vector2.new(500, 300), Enum.KeyCode.RightShift)
 local Evade = Window:CreateTab("General")
