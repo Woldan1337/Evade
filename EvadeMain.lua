@@ -92,24 +92,26 @@ Gamesec:AddToggle('BunnyHop', false, function(State)
     local player = game.Players.LocalPlayer
     local humanoid = player.Character:WaitForChild("Humanoid")
     local userInputService = game:GetService("UserInputService")
-
+    
     if State then
-        -- BunnyHop modu aktif olduğunda, Space tuşuna basıldığında zıplama işlemi
+        -- BunnyHop modu aktif olduğunda, Space tuşuna basıldığında sürekli zıplama işlemi
         userInputService.InputBegan:Connect(function(input, gameProcessed)
             if gameProcessed then return end
+            
             if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.Space then
-                -- Zıplama işlemi
-                if not humanoid:GetState() == Enum.HumanoidStateType.Freefall then
+                -- Eğer karakter yere düşmüyorsa, sürekli zıplamayı sağlar
+                if humanoid:GetState() ~= Enum.HumanoidStateType.Freefall then
                     humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-                    humanoid:Move(Vector3.new(0, 10, 0))  -- Zıplama kuvveti (yukarıya)
+                    humanoid:Move(Vector3.new(0, 1, 0))  -- Normal zıplama kuvveti (yukarıya)
                 end
             end
         end)
     else
-        -- BunnyHop modu devre dışı olduğunda, zıplama işlemini iptal et
+        -- BunnyHop modu devre dışı olduğunda, zıplamayı durdur
         userInputService.InputBegan:Disconnect()
     end
 end)
+
 
 
 EvadeSector:AddToggle('Auto Respawn', false, function(State)
