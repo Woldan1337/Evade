@@ -10,7 +10,6 @@ Esp.Tracers = false
 Esp.Players = false
 Esp.Distance = false
 Esp.highlight = false
-Esp.DPlayerESP = false
 
 Esp.Settings.BoxColor = Color3.fromRGB(0, 255, 0)
 Esp.Settings.TracerColor = Color3.fromRGB(255, 0, 0)
@@ -152,9 +151,6 @@ end)
 
 Visuals:AddToggle('Downed Esp', false, function(State)
     Esp.DPlayerESP = State
-    if EspLib.DPlayerESP then
-        setupDownedPlayerESP()
-    end
 end)
 
 Visuals:AddToggle('NameTag', false, function(State)
