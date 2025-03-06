@@ -9,9 +9,10 @@ local EspLib = {
     Players = false,
     highlight = false,
     Distance = false,
+    DPlayerESP = false, -- Downed Player ESP özelliği eklendi
     Settings = {
         PlayerColor = Color3.fromRGB(255, 170, 0), -- Varsayılan oyuncu rengi
-        DownedColor = Color3.fromRGB(255, 255, 255), -- Düşmüş oyuncu rengi
+        DPlayerColor = Color3.fromRGB(255, 255, 255), -- Düşmüş oyuncu rengi 
         BoxColor = Color3.fromRGB(255, 0, 0),
         OutlineColor = Color3.fromRGB(0, 0, 0),
         TracerColor = Color3.fromRGB(255, 0, 0),
@@ -24,7 +25,71 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
 local RunService = game:GetService("RunService")
+local WorkspacePlayers = game:GetService("Workspace"):WaitForChild("Players")
 
+-- Downed oyuncuları kontrol etme fonksiyonu
+local GetDownedPlr = function()
+    for i, v in pairs(WorkspacePlayers:GetChildren()) do
+        if v:GetAttribute("Downed") then
+            return v
+        end
+    end
+end
+
+-- Downed oyuncuları kutucukla gösterme fonksiyonu
+local function drawDownedPlayerESP(character)
+    if character:FindFirstChild("HumanoidRootPart") then
+        local hrp = character.HumanoidRootPart
+        local screenPos, onScreen = Camera:WorldToViewportPoint(hrp.Position)
+
+        if onScreen then
+            local box = Drawing.new("Rectangle")
+            box.Color = EspLib.Settings.DPlayerColor
+            box.Filled = false
+            box.Thickness = 2
+
+            local width, height = 50, 100 -- Kutunun boyutları
+            box.Position = Vector2.new(screenPos.X - width / 2, screenPos.Y - height / 2)
+            box.Size = Vector2.new(width, height)
+
+            box.Visible = true
+
+            RunService.RenderStepped:Connect(function()
+                if EspLib.DPlayerESP and character and character:FindFirstChild("HumanoidRootPart") then
+                    local hrp = character.HumanoidRootPart
+                    local screenPos, onScreen = Camera:WorldToViewportPoint(hrp.Position)
+
+                    if onScreen then
+                        box.Position = Vector2.new(screenPos.X - width / 2, screenPos.Y - height / 2)
+                        box.Visible = true
+                    else
+                        box.Visible = false
+                    end
+                else
+                    box.Visible = false
+                end
+            end)
+        end
+    end
+end
+
+-- Downed ESP'yi çalıştırmak için gerekli kodlar
+local function setupDownedPlayerESP()
+    local downedPlayer = GetDownedPlr()
+    if downedPlayer and downedPlayer.Character then
+        drawDownedPlayerESP(downedPlayer.Character)
+    end
+end
+
+-- Toggle butonunu ekleyelim
+Visuals:AddToggle('Downed Esp', false, function(State)
+    EspLib.DPlayerESP = State
+    if EspLib.DPlayerESP then
+        setupDownedPlayerESP() -- Downed oyuncuları ekranda göster
+    end
+end)
+
+-- Diğer kodlar burada kaldığı gibi devam eder...
 local function drawESP(character, player)
     local highlight = nil
     if EspLib.highlight and not character:FindFirstChild("Highlight") then
