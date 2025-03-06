@@ -40,7 +40,7 @@ getgenv().Settings = {
     TicketFarm = false,
     Speed = 1450,
     Jump = 3,
-    reviveTime = 3,
+    reviveTime = 2,
     DownedColor = Color3.fromRGB(255,0,0),
     PlayerColor = Color3.fromRGB(255,170,0),
 
