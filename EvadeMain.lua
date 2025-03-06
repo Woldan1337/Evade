@@ -9,6 +9,7 @@ Esp.Boxes = false
 Esp.Tracers = false
 Esp.Players = false
 Esp.Distance = false
+Esp.highlight = false
 
 Esp.Settings.BoxColor = Color3.fromRGB(0, 255, 0)
 Esp.Settings.TracerColor = Color3.fromRGB(255, 0, 0)
