@@ -3,6 +3,7 @@ local Players = game:GetService('Players');
 local localplayer = Players.LocalPlayer;
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/MainLib.lua"))()
+local DPLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/dplib.lua"))()
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/EspLib.lua"))()
 Esp.Enabled = false
 Esp.Boxes = false
@@ -141,12 +142,12 @@ Visuals:AddToggle('Ticket Esp (No Working)', false, function(State)
     Esp.TicketEsp = State
 end)
 
-Visuals:AddToggle('Downed Esp (NoWorking)', false, function(State)
-    Settings.Downedplayeresp = State
-end)
-
 Visuals:AddToggle('Boxes (No Working)', false, function(State)
     Esp.Boxes = State
+end)
+
+Visuals:AddToggle('Downed Esp', false, function(State)
+    DPLib.DPlayerESP = State
 end)
 
 Visuals:AddToggle('Tracers', false, function(State)
