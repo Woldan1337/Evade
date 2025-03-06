@@ -149,10 +149,6 @@ Visuals:AddToggle('Tracers', false, function(State)
     Esp.Tracers = State
 end)
 
-Visuals:AddToggle('Downed Esp', false, function(State)
-    Esp.DPlayerESP = State
-end)
-
 Visuals:AddToggle('NameTag', false, function(State)
     Esp.Players = State
 end)
