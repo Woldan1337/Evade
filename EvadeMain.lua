@@ -108,19 +108,19 @@ Visuals:AddToggle('Enable Esp', false, function(State)
     Esp.Enabled = State
 end)
 
-Visuals:AddToggle('Bot Esp', false, function(State)
+Visuals:AddToggle('Bot Esp (No Working)', false, function(State)
     Esp.NPCs = State
 end)
 
-Visuals:AddToggle('Ticket Esp', false, function(State)
+Visuals:AddToggle('Ticket Esp (No Working)', false, function(State)
     Esp.TicketEsp = State
 end)
 
-Visuals:AddToggle('Downed Player Esp', false, function(State)
+Visuals:AddToggle('Downed Esp (NoWorking)', false, function(State)
     Settings.Downedplayeresp = State
 end)
 
-Visuals:AddToggle('Boxes', false, function(State)
+Visuals:AddToggle('Boxes (No Working)', false, function(State)
     Esp.Boxes = State
 end)
 
@@ -128,7 +128,7 @@ Visuals:AddToggle('Tracers', false, function(State)
     Esp.Tracers = State
 end)
 
-Visuals:AddToggle('Players', false, function(State)
+Visuals:AddToggle('NameTag', false, function(State)
     Esp.Players = State
 end)
 
