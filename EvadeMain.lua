@@ -132,6 +132,10 @@ Visuals:AddToggle('Players', false, function(State)
     Esp.Players = State
 end)
 
+Visuals:AddToggle('GlowESP', false, function(State)
+    Esp.highlight = State
+end)
+
 Visuals:AddToggle('Distance', false, function(State)
     Esp.Distance = State
 end)
