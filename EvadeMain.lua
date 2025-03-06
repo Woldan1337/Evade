@@ -98,9 +98,9 @@ Gamesec:AddToggle('BunnyHop', false, function(State)
             if gameProcessed then return end
             
             if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.Space then
-                if humanoid:GetState() ~= Enum.HumanoidStateType.Freefall then
+                if humanoid:GetState() == Enum.HumanoidStateType.Physics or humanoid:GetState() == Enum.HumanoidStateType.Seated then
                     humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-                    humanoid:Move(Vector3.new(0, 1, 0))
+                    humanoid:Move(Vector3.new(0, 50, 0))
                 end
             end
         end)
@@ -108,6 +108,7 @@ Gamesec:AddToggle('BunnyHop', false, function(State)
         userInputService.InputBegan:Disconnect()
     end
 end)
+
 
 
 
