@@ -145,13 +145,16 @@ end)
 Visuals:AddToggle('Boxes (No Working)', false, function(State)
     Esp.Boxes = State
 end)
--- Downed Player Esp için Toggle1
-Visuals:AddToggle('Downed Player Esp', false, function(State)
-    Esp.DPlayerESP = State  -- Düşen oyuncuları gösteren ESP'yi açıp kapatmak
-end)
 
 Visuals:AddToggle('Tracers', false, function(State)
     Esp.Tracers = State
+end)
+
+Visuals:AddToggle('Downed Esp', false, function(State)
+    Esp.DPlayerESP = State
+    if EspLib.DPlayerESP then
+        setupDownedPlayerESP()
+    end
 end)
 
 Visuals:AddToggle('NameTag', false, function(State)
