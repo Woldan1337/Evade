@@ -3,7 +3,6 @@ local Players = game:GetService('Players');
 local localplayer = Players.LocalPlayer;
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/MainLib.lua"))()
-local DPLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/dplib.lua"))()
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/Woldan1337/Evade/refs/heads/main/EspLib.lua"))()
 Esp.Enabled = false
 Esp.Boxes = false
@@ -11,7 +10,7 @@ Esp.Tracers = false
 Esp.Players = false
 Esp.Distance = false
 Esp.highlight = false
-DPLib.DPlayerESP = false
+Esp.DPlayerESP = false
 
 Esp.Settings.BoxColor = Color3.fromRGB(0, 255, 0)
 Esp.Settings.TracerColor = Color3.fromRGB(255, 0, 0)
@@ -146,10 +145,14 @@ end)
 Visuals:AddToggle('Boxes (No Working)', false, function(State)
     Esp.Boxes = State
 end)
-
-Visuals:AddToggle('Downed Esp', false, function(State)
-    DPLib.DPlayerESP = State
+-- Downed Player Esp için Toggle1
+Visuals:AddToggle('Downed Player Esp 1', false, function(State)
+    EspLib.DPlayerESP = State  -- Düşen oyuncuları gösteren ESP'yi açıp kapatmak
 end)
+-- Downed Player Esp için Toggle
+Visuals:AddToggle('Downed Player Esp 2', false, function(State)
+    Esp.DPlayerESP = State  -- Düşen oyuncuları gösteren ESP'yi açıp kapatmak
+end
 
 Visuals:AddToggle('Tracers', false, function(State)
     Esp.Tracers = State
